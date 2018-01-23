@@ -1,0 +1,87 @@
+var contacts = [];
+var $nameInput = $("#name-input");/*Entrada de nombre*/
+var $phoneInput = $("#phone-input");/*Entrada de teléfono*/
+function loadPage() { /*Función que contiene funciones*/
+  $(".modal").modal();/*Despliega el modal*/
+  $("#form").submit(addContact); //Agrega un nuevo contacto
+  $nameInput.keyup(validateContact);/*Valida el nombre*/
+  $phoneInput.keyup(validateContact);/*Valida el teléfono*/
+  $("#searcher").keyup(filterContacts);//Filtra los contactos
+}
+function validateContact () {/*Valida que existe entrada*/
+  var $containerAddContact = $("#add-contact");/*Botón que agrega contacto*/
+  if($(this).val().trim().length > 0) {/*Si el valor de la entrada (sin espacios) es mayor a cero*/
+    $containerAddContact.removeAttr("disabled");/*Se quita el atributo "disabled"*/
+  } else {
+    $containerAddContact.attr("disabled" , true);/*Si no hay valor en la entrada agrega el atributo disabled y le coloca tru (desabilitado)*/
+  }
+}
+function addContact(e) {/*La función add contact se detona con un evento*/
+  e.preventDefault();/*Elimina el evento por default*/
+  // Con estas lineas toman el valor del usuario agrega los inputs y los guarda en variables
+  var name = $nameInput.val();
+  var phone = $phoneInput.val();
+  // Con las variables separadas que obtuvimos, creamos una estructura de datos unica, un objeto por cada contacto
+  var contact = {
+    "name": name,
+    "phone": phone
+  };
+  // Agregamos el contacto a nuestra data para poder filtrar y eliminar posteriormente
+  contacts.push(contact);/*contacts= arreglo vacio declarado al inicio, contact = objeto que contiene los datos (1 por cada registro)*/
+  // Esta funcion pinta en el html
+  paintContactsInHtml(contact);/*Llamaa a la función que depende de contact (cada objeto)*/
+// console.log(contacts, contact);
+  // limpiando valores del form (después de que se agrega cada contacto)
+  $nameInput.val(" ");
+  $phoneInput.val(" ");
+  $("#modal1").modal("close");/*Cierra el modal*/
+}
+function paintContactsInHtml (contact) {/*La función paintContactsInHtml depende de "contact"*/
+  // crear elementos con DOM
+  var $newContact = $("<article />", {
+    "class": "card-panel hoverable"
+  });
+  var $containerContactName = $("<h4 />");
+  var $deleteContactButton = $("<button type='button' />");
+  var  $removeIcono = $("<i />", {
+    "class": "material-icons"
+  });
+  var $containerContactPhone = $("<p />");
+  // Agregamos atributos y eventos a los elementos creados en el dom
+  $deleteContactButton.addClass("btn right");
+  $removeIcono.text("delete");
+  $deleteContactButton.click(removeContact);
+  // Asignando valores
+  $deleteContactButton.append($removeIcono);
+  $containerContactName.text(contact.name);
+  $containerContactPhone.text(contact.phone);
+  $newContact.append($containerContactName);
+  $newContact.append($deleteContactButton);
+  $newContact.append($containerContactPhone);
+  // console.log($newContact);
+  $("#publish-contacts").prepend($newContact);
+}
+function filterContacts (){ /*Función filtro de contactos*/
+  var searchContact = $("#searcher").val().toLowerCase();/*Trae el valor del input de entrada (busqueda) y lo convierte a minusculas*/
+    if($("#searcher").val().trim().length > 0) {/*Si el valor de entrada (sin espacios) es mayor a cero*/
+        var filteredContacts = contacts.filter(function(contact) {/*Del arreglo total "contacts", filtra de acuerdo a una función que depende de contact (cada objeto o valor agregado)*/
+           // console.log(contact);
+            return contact.name.toLowerCase().indexOf(searchContact) >= 0;/*Regresa el nombre del contacto que coincide con el valor buscado el cual es convertido previamente en minúscula*/
+        });
+      $("#publish-contacts").empty();/*limpia el contenedor donde se pintarán los contactos*/
+      filteredContacts.forEach(function(contact){/*recorre el arreglo que contiene los datos insertados filtados (linea 80) y va ejecutando la funcion PaintContact*/
+        paintContactsInHtml(contact);
+      });
+    } else {/*Si el valor de entrada (sin espacios es menor a cero)*/
+      $("#publish-contacts").empty();/*Deja el espacio que se mostrará con el resultado vacío*/
+      contacts.forEach(function(contact){/*Por medio de forEach se llama por cada elemento del arreglo contacts(cada contacto) a la función paintContactsInHtml*/
+        paintContactsInHtml(contact);
+      });
+    }
+  // console.log(filteredContacts);
+}
+function removeContact () {/*Remueve*/
+  $(this).parent().remove();/*Remueve alpadre*/
+  console.log($(this).parent())
+}
+$(document).ready(loadPage);/*Ejecuta la función loadPage que tiene todas las funciones dentro*/

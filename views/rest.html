@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <title>Foodman</title>
+  </head>
+  <body>
+      <!-- Encabezado -->
+      <section class="col-xs-12" id="header">
+        <h1>FoodMap</h1>
+        <hr>
+      </section>
+      <!-- Mapa -->
+      <section class="container">
+        <div class="">
+          <iframe class="maps col-md-7 offset-md-5 col-xs-5 col-xs-7" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15039.836541640201!2d-99.1732938!3d19.5433679!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2smx!4v1516483247252" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+      </section>
+      <!-- Comida cerca de ti -->
+      <section class="food-her">
+        <h3>Comida Cerca</h3>
+        <div class="col-md-4 col-xs-4 input-group">
+            <input type="text" class="form-control" id="inputGroupSelect04 filtrar" placeholder="Filtrar Restaurantes">
+      <!-- Opciones para input en lista desplegable -->
+          <select class="form-control select-control">
+            <option value="all">Elije tipo de comida</option>
+            <option value="mexican">Comida Mexicana</option>
+            <option value="italian">Comida Italiana</option>
+            <option value="chinese">Comida China</option>
+            <option value="indu">Comida Indú</option>
+            <option value="helados">Helados</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Button</button>
+          </div>
+        </div>
+      </section>
+    <!--  <section class="container-fluid">
+        <div class="row">
+          <div class="col-4">
+            <img src="../assets/images/chinese.jpg"  alt="">
+          </div>
+          <div class="col-4">
+            <img src="../assets/images/italian.jpg" alt="">
+          </div>
+          <div class="col-4">
+            <img src="../assets/images/indu.jpg" alt="">
+          </div>
+          <div class="col-6">
+            <img src="../assets/images/mexican.jpg" alt="">
+            <img class="col-6" src="../assets/images/icecream.jpg" alt="">
+          </div>
+        </div>
+      </section>-->
+      <section class="container imgFood">
+        <div class="row">
+          <div class="col-4">
+            <img class="img-fluid" src="../assets/images/chinese.jpg"  alt="">
+          </div>
+          <div class="col-4">
+            <img class="img-fluid" src="../assets/images/italian.jpg" alt="">
+          </div>
+          <div class="col-4">
+            <img class="img-fluid" src="../assets/images/indu.jpg" alt="">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <img class="img-fluid" src="../assets/images/icecream.jpg" alt="">
+          </div>
+          <div class="col-6">
+            <img class="img-fluid" src="../assets/images/mexican.jpg" alt="">
+          </div>
+        </div>
+      </section>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../js/restaurantes.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+  </body>
+</html>

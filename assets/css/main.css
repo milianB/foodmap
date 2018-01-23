@@ -1,0 +1,54 @@
+/* Comienzan estilos para vista previa */
+.background{
+  background-color: #252525;
+}
+
+#preview{
+  height: 100vh;
+  background: black;
+  color: yellow;
+}
+
+/* Comienzan estilos para web-app */
+
+body{
+  background-color: #252525;
+  font-family: 'Montserrat', sans-serif;
+}
+ /* Comienzan estilos para seccin de encabezado */
+#header > h1{
+  color: yellow;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#header > hr{
+  background: white;
+}
+
+.maps{
+  height: 142px;
+}
+
+.food-her > h3{
+  margin-top: 30px;
+  color: yellow;
+  text-align: center;
+}
+
+.food-her > input{
+  margin-left: 100px;
+}
+
+  /* Estilos para barra de filtrado*/
+.input-group{
+
+}
+
+.box-food{
+  background-color: pink;
+}
+
+    /* */
+
+      /* */
